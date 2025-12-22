@@ -25,4 +25,8 @@ public class WechatController extends ApiController {
     public String init() {
         return STRING_SUCCESS;
     }
+
+
+
+
 }

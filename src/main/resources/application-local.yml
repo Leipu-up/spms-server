@@ -1,0 +1,32 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/spms?allowPublicKeyRetrieval=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 0
+      password:
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: 943491762@qq.com
+    password: nrpwyoialwxzbebf
+airpower:
+  mqtt:
+    host: 127.0.0.1
+    port: 1883
+    user:
+    pass:
+app:
+  influxdb:
+    url: your_influxdb_url
+    token: your_influxdb_token
+    org: your_influxdb_org
+    bucket: your_influxdb_bucket
