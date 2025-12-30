@@ -3,13 +3,17 @@ package cn.hamm.spms.module.vx.jjgxjcb;
 import cn.hamm.airpower.annotation.Description;
 import cn.hamm.spms.base.BaseEntity;
 import cn.hamm.spms.module.vx.Jjgxbgl.JjgxbglEntity;
+import cn.hamm.spms.module.vx.jjgxjcb.detail.JjgxjcjgbEntity;
 import cn.hamm.spms.module.vx.wxyh.WxyhEntity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
+import java.util.List;
 
 import static jakarta.persistence.FetchType.EAGER;
 
@@ -54,9 +58,9 @@ public class JjgxjcbEntity extends BaseEntity<JjgxjcbEntity> {
 	@OneToOne(fetch = EAGER)
 	private JjgxbglEntity jjgxbgl;
 
-/*	@Description("机加工序检查结果表信息")
+	@Description("机加工序检查结果表信息")
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "jjgxjcb")
 	@JsonManagedReference
-	private List<JjgxjcjgbEntity> jjgxjcjgbEntityList;*/
+	private List<JjgxjcjgbEntity> jjgxjcjgbEntityList;
 
 }

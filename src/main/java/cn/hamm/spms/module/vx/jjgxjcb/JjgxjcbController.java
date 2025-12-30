@@ -4,6 +4,7 @@ import cn.hamm.airpower.annotation.Description;
 import cn.hamm.airpower.api.Api;
 import cn.hamm.airpower.api.Extends;
 import cn.hamm.spms.base.BaseController;
+import org.jetbrains.annotations.NotNull;
 
 import static cn.hamm.airpower.curd.Curd.Export;
 import static cn.hamm.airpower.curd.Curd.QueryExport;
@@ -18,4 +19,9 @@ import static cn.hamm.airpower.curd.Curd.QueryExport;
 @Extends(exclude = {Export, QueryExport})
 public class JjgxjcbController extends BaseController<JjgxjcbEntity, JjgxjcbService, JjgxjcbRepository> {
 
+	@Override
+	protected JjgxjcbEntity afterGetDetail(@NotNull JjgxjcbEntity entity) {
+		return service.afterGetDetail(entity);
+
+	}
 }

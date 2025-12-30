@@ -2,9 +2,10 @@ package cn.hamm.spms.module.vx.jjgxjcb.detail;
 
 import cn.hamm.airpower.annotation.Description;
 import cn.hamm.spms.base.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import cn.hamm.spms.module.vx.Jjgxbgl.detail.JjgxxqbglEntity;
+import cn.hamm.spms.module.vx.jjgxjcb.JjgxjcbEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -46,14 +47,17 @@ public class JjgxjcjgbEntity extends BaseEntity<JjgxjcjgbEntity> {
 	@Column(columnDefinition = "varchar(255) default '' comment '不合格品报告'")
 	private String bhepbg;
 
-/*	@Description("机加工序检查表")
+	@Description("机加工序检查表")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "jjgxjcb_id")
 	@JsonBackReference
-	private JjgxjcbEntity jjgxjcb;*/
+	private JjgxjcbEntity jjgxjcb;
 
 	@Description("机加工序详情表id")
 	@Column(columnDefinition = "bigint(20) unsigned NOT NULL comment '机加工序详情表id'")
 	private Long jjgxxqbglId;
+
+	@Description("机加工序详情表")
+	private JjgxxqbglEntity jjgxxqbgl;
 
 }

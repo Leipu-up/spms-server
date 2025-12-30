@@ -15,4 +15,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class JjgxjcjgbService extends BaseService<JjgxjcbEntity, JjgxjcbRepository> {
 
+
+
 }
