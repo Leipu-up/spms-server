@@ -56,6 +56,9 @@ public class WxyhEntity extends BaseEntity<WxyhEntity> {
     @Column(columnDefinition = "varchar(255) default '' comment '身份证号'")
     private String idCard;
 
+    @Description("工号")
+    @Column(columnDefinition = "varchar(255) default '' comment '工号'")
+    private String employeeNo;
 
     @Description("手机号")
     @Column(columnDefinition = "varchar(255) default '' comment '手机号'", unique = true)

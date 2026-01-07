@@ -1,8 +1,6 @@
 package cn.hamm.spms.module.vx.jjgxjcb.detail;
 
 import cn.hamm.spms.base.BaseService;
-import cn.hamm.spms.module.vx.jjgxjcb.JjgxjcbEntity;
-import cn.hamm.spms.module.vx.jjgxjcb.JjgxjcbRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +11,11 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class JjgxjcjgbService extends BaseService<JjgxjcbEntity, JjgxjcbRepository> {
+public class JjgxjcjgbService extends BaseService<JjgxjcjgbEntity, JjgxjcjgbRepository> {
 
-
+	//删除检查结果表
+	public void deleteAllByJjgxjcbId(Long id) {
+		repository.deleteAllByJjgxjcbId(id);
+	}
 
 }

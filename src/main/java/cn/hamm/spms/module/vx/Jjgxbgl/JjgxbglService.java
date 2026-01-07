@@ -1,6 +1,8 @@
 package cn.hamm.spms.module.vx.Jjgxbgl;
 
-import cn.hamm.spms.base.BaseService;
+import cn.hamm.spms.module.vx.Jjgxbgl.detail.JjgxxqbglEntity;
+import cn.hamm.spms.module.vx.Jjgxbgl.detail.JjgxxqbglRepository;
+import cn.hamm.spms.module.vx.Jjgxbgl.detail.JjgxxqbglService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import org.springframework.stereotype.Service;
  */
 @Slf4j
 @Service
-public class JjgxbglService extends BaseService<JjgxbglEntity, JjgxbglRepository> {
+public class JjgxbglService extends AbstractJjgxbglService< JjgxbglEntity, JjgxbglRepository, JjgxxqbglEntity, JjgxxqbglService, JjgxxqbglRepository> {
+
+
 
 }

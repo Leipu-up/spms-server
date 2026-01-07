@@ -3,9 +3,9 @@ package cn.hamm.spms.module.vx.Jjgxbgl.detail;
 import cn.hamm.airpower.annotation.Description;
 import cn.hamm.airpower.annotation.Search;
 import cn.hamm.spms.base.BaseEntity;
-import cn.hamm.spms.module.vx.Jjgxbgl.JjgxbglEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -59,11 +59,10 @@ public class JjgxxqbglEntity extends BaseEntity<JjgxxqbglEntity> {
 	@Search
 	private String pc;
 
-	// 在 JjgxxqbglEntity.java 中
-	@Description("机加工序表管理")
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "jjgxbgl_id")
-	@JsonBackReference
-	private JjgxbglEntity jjgxbgl;
+	@Description("机加工序表管理id")
+	@Column(columnDefinition = "bigint UNSIGNED comment '机加工序表管理id'")
+	private Long jjgxbglId;
+
+
 
 }

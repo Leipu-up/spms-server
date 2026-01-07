@@ -1,5 +1,6 @@
-package cn.hamm.spms.module.vx.Jjgxbgl;
+package cn.hamm.spms.module.vx.Jjgxbgl.detail;
 
+import cn.hamm.airpower.access.Permission;
 import cn.hamm.airpower.annotation.Description;
 import cn.hamm.airpower.api.Api;
 import cn.hamm.airpower.api.Extends;
@@ -13,11 +14,11 @@ import static cn.hamm.airpower.curd.Curd.QueryExport;
  *
  * @author Hamm.cn
  */
-@Api("jjgxbgl")
-@Description("机加工序表管理")
+@Api("wechat/jjgxxqbgl")
+@Permission(login = false)
+@Description("机加工序详情表管理")
 @Extends(exclude = {Export, QueryExport})
-public class JjgxbglController extends BaseController<JjgxbglEntity, JjgxbglService, JjgxbglRepository> {
-
+public class JjgxxqbglController extends BaseController<JjgxxqbglEntity, JjgxxqbglService, JjgxxqbglRepository> {
 
 
 }

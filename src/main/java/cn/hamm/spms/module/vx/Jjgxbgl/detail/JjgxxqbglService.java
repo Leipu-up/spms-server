@@ -18,4 +18,12 @@ public class JjgxxqbglService extends BaseService<JjgxxqbglEntity, JjgxxqbglRepo
 		return repository.findByIdIn(ids);
 	}
 
+	public List<JjgxxqbglEntity> getDetailsById(Long id){
+		return repository.getDetailsById(id);
+	}
+
+	public void deleteAllByJjgxbglId(Long id){
+		repository.deleteAllByJjgxbglId(id);
+	}
+
 }

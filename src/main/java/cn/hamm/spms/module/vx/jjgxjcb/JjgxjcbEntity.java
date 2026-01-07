@@ -44,6 +44,10 @@ public class JjgxjcbEntity extends BaseEntity<JjgxjcbEntity> {
 	@Column(columnDefinition = "varchar(255) default '' comment '日期'")
 	private String rq;
 
+	@Description("状态(0:待完成,1:已完成)")
+	@Column(columnDefinition = "varchar(255) default '0' comment '状态'")
+	private String status;
+
 	@Description("检验员")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "jyy_id", foreignKey = @ForeignKey(name = "fk_jjgxjcb_jyy_id"))

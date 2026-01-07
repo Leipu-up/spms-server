@@ -2008,6 +2008,7 @@ CREATE TABLE `user_vx` (
                         `id_card` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '身份证号',
                         `nickname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '昵称',
                         `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '手机号',
+                        `employee_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '工号',
                         `real_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '真实姓名',
                         PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='小程序用户表';;
@@ -2056,6 +2057,7 @@ CREATE TABLE `jjgxjcb` (
                            `pch` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '批次号',
                            `sbh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '设备号',
                            `rq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '日期',
+                           `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态(0:待完成,1:已完成)',
                            `jyy_id` bigint(20) unsigned NOT NULL  COMMENT '检验员id',
                            `qrz_id` bigint(20) unsigned NOT NULL  COMMENT '确认者id',
                            `jjgxbgl_id` bigint(20) unsigned NOT NULL  COMMENT '机加工序表管理id',

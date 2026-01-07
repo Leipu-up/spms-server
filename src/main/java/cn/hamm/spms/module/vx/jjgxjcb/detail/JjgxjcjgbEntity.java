@@ -60,4 +60,8 @@ public class JjgxjcjgbEntity extends BaseEntity<JjgxjcjgbEntity> {
 	@Description("机加工序详情表")
 	private JjgxxqbglEntity jjgxxqbgl;
 
+	@Description("机加工序表管理id")
+	@Column(columnDefinition = "bigint(20) unsigned NOT NULL comment '机加工序表管理id'")
+	private Long jjgxbglId;
+
 }
