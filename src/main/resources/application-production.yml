@@ -5,8 +5,8 @@ spring:
       ddl-auto: update
   datasource:
     url: "jdbc:mysql://mysql:3306/spms?allowPublicKeyRetrieval=true&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false"
-    username: "spms"
-    password: "spms"
+    username: root
+    password: 123456
   data:
     redis:
       host: "redis"

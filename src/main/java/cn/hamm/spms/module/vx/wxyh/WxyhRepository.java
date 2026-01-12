@@ -21,8 +21,8 @@ public interface WxyhRepository extends BaseRepository<WxyhEntity> {
 	@Query(value = "SELECT * FROM jjgxjcjgb WHERE gjzt = :gjzt AND jjgxxqbgl_id IN :ids",nativeQuery = true)
 	List<JjgxjcjgbEntity> findByGjztAndIds(@Param("gjzt") String gjzt, @Param("ids") List<Long> ids);
 
-	@Query(value = "SELECT * FROM user_vx WHERE phone = :phone  or employee_no=:employeeNo ", nativeQuery = true)
-	WxyhEntity findByPhoneNo(@Param("phone") String phone, @Param("employeeNo") String employeeNo);
+	@Query(value = "SELECT * FROM user_vx WHERE (phone = :phone  or employee_no=:employeeNo ) and password = :password ", nativeQuery = true)
+	WxyhEntity findByPhoneNo(@Param("phone") String phone, @Param("employeeNo") String employeeNo, @Param("password") String password);
 
 
 }

@@ -16,8 +16,8 @@ public class WxyhService extends BaseService<WxyhEntity, WxyhRepository> {
 
 	@Autowired WxyhRepository wxyhRepository;
 
-	public WxyhEntity findByPhoneNo(String phone, String employeeNo) {
-		return wxyhRepository.findByPhoneNo(phone, employeeNo);
+	public WxyhEntity findByPhoneNo(String phone, String employeeNo, String password) {
+		return wxyhRepository.findByPhoneNo(phone, employeeNo, password);
 	}
 
 

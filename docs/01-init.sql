@@ -2006,6 +2006,7 @@ CREATE TABLE `user_vx` (
                         `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
                         `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '头像',
                         `id_card` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '身份证号',
+                        `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '123456' COMMENT '登录密码',
                         `nickname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '昵称',
                         `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '手机号',
                         `employee_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '工号',
@@ -2081,7 +2082,9 @@ CREATE TABLE `jjgxjcjgb` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='机加工序检查结果表';
 
 
-
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765874181728, 340, 0, 1765874181741, '机加工序检查表', 'Jjgxjcb');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 344, 340, 1765874181728, '机加工序检查表-发布', 'Jjgxjcb_publish');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 345, 340, 1765874181728, '机加工序检查表-查询详情', 'Jjgxjcb_getDetail');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 346, 340, 1765874181728, '机加工序检查表-不分页查询', 'Jjgxjcb_getList');
@@ -2091,9 +2094,11 @@ INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `c
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 350, 340, 1765874181728, '机加工序检查表-修改', 'Jjgxjcb_update');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 351, 340, 1765874181728, '机加工序检查表-删除', 'Jjgxjcb_delete');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 352, 340, 1765874181728, '机加工序检查表-启用', 'Jjgxjcb_enable');
-
 commit;
 
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765940384894, 363, 0, 1765940384895, '机加工序表管理', 'Jjgxbgl');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 444, 363, 1765874181728, '机加工序表管理-发布', 'Jjgxbgl_publish');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 445, 363, 1765874181728, '机加工序表管理-查询详情', 'Jjgxbgl_getDetail');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 446, 363, 1765874181728, '机加工序表管理-不分页查询', 'Jjgxbgl_getList');
@@ -2103,7 +2108,11 @@ INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `c
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 450, 363, 1765874181728, '机加工序表管理-修改', 'Jjgxbgl_update');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 451, 363, 1765874181728, '机加工序表管理-删除', 'Jjgxbgl_delete');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 452, 363, 1765874181728, '机加工序表管理-启用', 'Jjgxbgl_enable');
+commit;
 
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765940406757, 364, 0, 1765940406759, '机加产品表管理', 'Jjcpbgl');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 544, 364, 1765874181728, '机加产品表管理-发布', 'Jjcpbgl_publish');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 545, 364, 1765874181728, '机加产品表管理-查询详情', 'Jjcpbgl_getDetail');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 546, 364, 1765874181728, '机加产品表管理-不分页查询', 'Jjcpbgl_getList');
@@ -2113,6 +2122,4 @@ INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `c
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 550, 364, 1765874181728, '机加产品表管理-修改', 'Jjcpbgl_update');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 551, 364, 1765874181728, '机加产品表管理-删除', 'Jjcpbgl_delete');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 552, 364, 1765874181728, '机加产品表管理-启用', 'Jjcpbgl_enable');
-
-
 commit;

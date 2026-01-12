@@ -81,6 +81,7 @@ public class WechatController extends ApiController {
 		wxyh.setNickname(wxyhEntity.getNickname());
 		wxyh.setPhone(wxyhEntity.getPhone());
 		wxyh.setAvatar(wxyhEntity.getAvatar());
+		wxyh.setPassword(wxyhEntity.getPassword());
 		wxyhService.update(wxyh);
 		return wxyh;
 	}
@@ -93,7 +94,7 @@ public class WechatController extends ApiController {
 	@RequestMapping(value = "getUserOneByPhoneOrNo")
 	@ResponseBody
 	public WxyhEntity getUserOneByPhoneOrNo(@RequestBody WxyhEntity wxyhEntity) {
-		WxyhEntity wxyh = wxyhService.findByPhoneNo(wxyhEntity.getPhone(), wxyhEntity.getEmployeeNo());
+		WxyhEntity wxyh = wxyhService.findByPhoneNo(wxyhEntity.getPhone(), wxyhEntity.getEmployeeNo(), wxyhEntity.getPassword());
 		return wxyh;
 
 	}

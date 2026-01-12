@@ -60,6 +60,10 @@ public class WxyhEntity extends BaseEntity<WxyhEntity> {
     @Column(columnDefinition = "varchar(255) default '' comment '工号'")
     private String employeeNo;
 
+    @Description("登录密码")
+    @Column(columnDefinition = "varchar(255) default '' comment '登录密码'")
+    private String password;
+
     @Description("手机号")
     @Column(columnDefinition = "varchar(255) default '' comment '手机号'", unique = true)
     @Phone(groups = {IUserAction.WhenResetMyPassword.class, IUserAction.WhenSendSms.class}, message = "手机格式不正确")
