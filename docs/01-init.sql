@@ -1995,6 +1995,7 @@ COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
+-- 嘉晟图表的脚本start
 
 
 DROP TABLE IF EXISTS `user_vx`;
@@ -2123,3 +2124,181 @@ INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `c
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 551, 364, 1765874181728, '机加产品表管理-删除', 'Jjcpbgl_delete');
 INSERT INTO `permission` (`is_disabled`, `is_published`, `is_system`, `type`, `create_time`, `id`, `parent_id`, `update_time`, `name`, `identity`) VALUES (0, 0, 1, 0, 1765874181728, 552, 364, 1765874181728, '机加产品表管理-启用', 'Jjcpbgl_enable');
 commit;
+
+
+INSERT INTO spms.menu
+(is_disabled, is_published, order_no, create_time, id, parent_id, update_time, name, component, icon, `path`)
+VALUES(0, 0, 100, 1765441934099, 43, 0, 1765441934099, '小程序管理', '', '', '');
+INSERT INTO spms.menu
+(is_disabled, is_published, order_no, create_time, id, parent_id, update_time, name, component, icon, `path`)
+VALUES(0, 0, 1, 1765442065042, 44, 43, 1765932776944, '小程序用户管理', '', '', '/console/vx/wxyh/list');
+INSERT INTO spms.menu
+(is_disabled, is_published, order_no, create_time, id, parent_id, update_time, name, component, icon, `path`)
+VALUES(0, 0, 2, 1765870231947, 46, 43, 1765870231947, '机加工序检查表', '', '', '/console/vx/jjgxjcb/list');
+INSERT INTO spms.menu
+(is_disabled, is_published, order_no, create_time, id, parent_id, update_time, name, component, icon, `path`)
+VALUES(0, 0, 1, 1765940128624, 47, 43, 1765940128624, '机加工序表管理', '', '', '/console/vx/jjgxbgl/list');
+INSERT INTO spms.menu
+(is_disabled, is_published, order_no, create_time, id, parent_id, update_time, name, component, icon, `path`)
+VALUES(0, 0, 1, 1765940182660, 48, 43, 1765940182660, '机加产品表管理', '', '', '/console/vx/jjcpbgl/list');
+
+commit;
+
+-- 嘉晟图表的脚本end
+
+
+
+
+-- 句美菁英的脚本start
+
+DROP TABLE IF EXISTS `jmsdb`;
+CREATE TABLE `jmsdb` (
+                           `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                           `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                           `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                           `sdmc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '商店名称',
+                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='句美商店表';
+
+DROP TABLE IF EXISTS `jmygb`;
+CREATE TABLE `jmygb` (
+                         `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                         `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                         `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                         `avatar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '头像',
+                         `nickname` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '昵称',
+                         `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '真实姓名',
+                         `sfzh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '身份证号',
+                         `sjh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '手机号',
+                         `employee_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '工号',
+                         `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '123456' COMMENT '登录密码',
+                         `rolename` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '美容师' COMMENT '角色名称(美容师,前台,店长,管理员)',
+                         `level` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT '1' COMMENT '权限等级(1,2,3,4)',
+                         `join_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '入职时间',
+                         `jmsdb_id` bigint(20) unsigned NOT NULL  COMMENT '句美商店表id',
+                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='句美员工表';
+
+DROP TABLE IF EXISTS `jmpbb`;
+CREATE TABLE `jmpbb` (
+                         `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                         `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                         `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                         `pblx` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '排班类型(全天班,休息)',
+                         `pbrq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '排班日期',
+                         `jmygb_id` bigint(20) unsigned NOT NULL  COMMENT '句美员工表id',
+                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='句美排班表';
+
+DROP TABLE IF EXISTS `jmkhb`;
+CREATE TABLE `jmkhb` (
+                         `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                         `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                         `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                         `khxm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '客户姓名',
+                         `khsjh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '客户手机号',
+                         `khxb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '女' COMMENT '客户性别',
+                         `khsr` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '客户生日',
+                         `khdj` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '普通' COMMENT '客户等级(普通,银卡,金卡,钻石,至尊)',
+                         `khly` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '客户来源(门店到访,朋友推荐,线上预约,活动引流,其他)',
+                         `bz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
+                         `ljxf` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '累计消费',
+                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='句美客户表';
+
+DROP TABLE IF EXISTS `jmfwb`;
+CREATE TABLE `jmfwb` (
+                         `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                         `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                         `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                         `fwmc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '服务名称',
+                         `fwjg` double(20,2) unsigned DEFAULT '0.00' COMMENT '服务价格',
+                         `fwsc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '服务时长',
+                         `fwfl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '服务分类(面部护理,身体护理,其他)',
+                         `fwms` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '服务描述',
+                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='句美服务表';
+
+DROP TABLE IF EXISTS `jmyyb`;
+CREATE TABLE `jmyyb` (
+                         `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                         `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                         `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                         `yyrq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '预约日期',
+                         `yysj` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '预约时间',
+                         `yysc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '预约时长(60,90,120,150,180分钟)',
+                         `zt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '状态(待服务,已确认,已服务,已超时)',
+                         `bz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
+                         `jmfwb_id` bigint(20) unsigned NOT NULL  COMMENT '句美服务表id',
+                         `jmygb_id` bigint(20) unsigned NOT NULL  COMMENT '句美员工表id',
+                         `jmygb_id` bigint(20) unsigned NOT NULL  COMMENT '句美员工表id',
+                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='句美预约表';
+
+DROP TABLE IF EXISTS `jmkcb`;
+CREATE TABLE `jmkcb` (
+                         `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                         `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                         `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                         `spmc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '商品名称',
+                         `spfl` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '商品分类(护肤,仪器,工具,消耗品,其他)',
+                         `spdw` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '商品单位(瓶,盒,支,台,个,件)',
+                         `dqkc` bigint(20) unsigned DEFAULT '0'  COMMENT '当前库存',
+                         `kcyj` bigint(20) unsigned DEFAULT '1'  COMMENT '库存预警',
+                         `bz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
+                         `jmsdb_id` bigint(20) unsigned NOT NULL  COMMENT '句美商店表id',
+                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='句美库存表';
+
+DROP TABLE IF EXISTS `jmrkb`;
+CREATE TABLE `jmrkb` (
+                         `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                         `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                         `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                         `rksl` bigint(20) unsigned DEFAULT '1' COMMENT '入库数量',
+                         `rksj` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '入库时间',
+                         `bz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
+                         `jmkcb_id` bigint(20) unsigned NOT NULL  COMMENT '句美库存表id',
+                         `jmygb_id` bigint(20) unsigned NOT NULL  COMMENT '句美员工表id',
+                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='句美入库表';
+
+DROP TABLE IF EXISTS `jmckb`;
+CREATE TABLE `jmckb` (
+                         `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                         `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                         `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                         `cksl` bigint(20) unsigned DEFAULT '1' COMMENT '出库数量',
+                         `cksj` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '出库时间',
+                         `ckyt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '出库用途(客户使用,员工使用,赠送,磨损,其他)',
+                         `bz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
+                         `jmkcb_id` bigint(20) unsigned NOT NULL  COMMENT '句美库存表id',
+                         `jmygb_id` bigint(20) unsigned NOT NULL  COMMENT '句美员工表id',
+                         PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='句美入库表';
+
+
+INSERT INTO spms.jmsdb
+(id, create_time, update_time, sdmc)
+VALUES(1, 1765874181728, 1765874181728, 'MLife');
+INSERT INTO spms.jmsdb
+(id, create_time, update_time, sdmc)
+VALUES(2, 1765874181728, 1765874181728, 'YOLO');
+
+INSERT INTO spms.jmygb
+(id, create_time, update_time, avatar, nickname, name, sfzh, sjh, employee_no, password, rolename, `level`, join_date, jmsdb_id)
+VALUES(1, 1765874181728, 1765874181728, '', '雷谱', '张磊', '', '18915151212', 'JM000', '123456', '管理员', '4', '2026-01-01', 1);
+INSERT INTO spms.jmygb
+(id, create_time, update_time, avatar, nickname, name, sfzh, sjh, employee_no, password, rolename, `level`, join_date, jmsdb_id)
+VALUES(2, 1765874181728, 1765874181728, '', 'Estrella', '郭娟', '', '18915151000', 'JM001', '123456', '管理员', '4', '2026-01-01', 1);
+INSERT INTO spms.jmygb
+(id, create_time, update_time, avatar, nickname, name, sfzh, sjh, employee_no, password, rolename, `level`, join_date, jmsdb_id)
+VALUES(3, 1765874181728, 1765874181728, '', '小鱼', '王瑜', '', '18915152000', 'JM002', '123456', '前台', '2', '2026-01-01', 1);
+INSERT INTO spms.jmygb
+(id, create_time, update_time, avatar, nickname, name, sfzh, sjh, employee_no, password, rolename, `level`, join_date, jmsdb_id)
+VALUES(4, 1765874181728, 1765874181728, '', '十一', '罗燕', '', '18915153000', 'JM003', '123456', '店长', '3', '2026-01-01', 2);
+
+commit;
+
+-- 句美菁英的脚本end
+
