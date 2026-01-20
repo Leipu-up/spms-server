@@ -11,7 +11,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * <h1>机加工序表管理抽象服务基类</h1>
@@ -114,30 +119,81 @@ public abstract class AbstractJjgxbglService<
 	 * @param details  明细列表
 	 */
 	private void saveDetails(long entityId, List<D> details) {
-		// 先删除之前保存的明细
-		detailService.deleteAllByJjgxbglId(entityId);
 		T entity = get(entityId);
-		if (details != null) {
-			details.forEach(detail -> {
-				detail.setJjgxbglId(entityId);
-				// 使用类型安全的保存方法
-				saveDetailSafely(detail);
-			});
+
+		// 获取现有的明细列表（重新查询以确保最新）
+		List<JjgxxqbglEntity> existingJjgxxqbgls = detailService.getDetailsById(entityId);
+		List<D> existingDetails = (List<D>) (List<?>) existingJjgxxqbgls; // 双重转换
+
+		if (details == null) {
+			details = new ArrayList<>();
 		}
-		entity.setDetails(details);
+
+		// 构建映射
+		Map<Long, D> existingMap = existingDetails.stream()
+				.filter(d -> d.getId() != null)
+				.collect(Collectors.toMap(D::getId, Function.identity()));
+
+		Map<Long, D> newMap = new HashMap<>();
+
+		// 处理传入的明细
+		for (D detail : details) {
+			detail.setJjgxbglId(entityId);
+			Long detailId = detail.getId();
+
+			if (detailId != null) {
+				// 更新
+				if (existingMap.containsKey(detailId)) {
+					udpateDetailSafely(detail);
+				} else {
+					// ID存在但数据库中不存在，可能有问题，可以抛出异常或处理
+					log.warn("明细ID {} 在数据库中不存在，将作为新增处理", detailId);
+					addDetailSafely(detail);
+					detailId = detail.getId(); // 获取新的ID
+				}
+				newMap.put(detailId, detail);
+				existingMap.remove(detailId); // 从现有映射中移除，剩下的就是需要删除的
+			} else {
+				// 新增
+				addDetailSafely(detail);
+				newMap.put(detail.getId(), detail);
+			}
+		}
+
+		// 删除剩余的明细（存在于数据库但不在新列表中）
+		if (!existingMap.isEmpty()) {
+			List<Long> idsToDelete = new ArrayList<>(existingMap.keySet());
+			for (Long idToDelete : idsToDelete) {
+				detailRepository.deleteById(idToDelete);
+			}
+		}
+
+		// 更新实体中的明细列表
+		entity.setDetails(new ArrayList<>(newMap.values()));
+
 		afterDetailSaved(entity);
 	}
-
 
 	/**
 	 * 安全地保存明细，避免泛型类型问题
 	 */
 	@SuppressWarnings("unchecked")
-	private void saveDetailSafely(D detail) {
+	private void addDetailSafely(D detail) {
 		// 将明细转换为 JjgxxqbglEntity 基类
 		JjgxxqbglEntity entity = detail;
 		// 使用具体类型的方法保存
 		detailService.add(entity);
+	}
+
+	/**
+	 * 安全地保存明细，避免泛型类型问题
+	 */
+	@SuppressWarnings("unchecked")
+	private void udpateDetailSafely(D detail) {
+		// 将明细转换为 JjgxxqbglEntity 基类
+		JjgxxqbglEntity entity = detail;
+		// 使用具体类型的方法保存
+		detailService.update(entity);
 	}
 
 	/**

@@ -2,6 +2,7 @@ package cn.hamm.spms.module.vx.Jjgxbgl.detail;
 
 import cn.hamm.airpower.annotation.Description;
 import cn.hamm.airpower.annotation.Search;
+import cn.hamm.airpower.export.Export;
 import cn.hamm.spms.base.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,32 +32,37 @@ public class JjgxxqbglEntity extends BaseEntity<JjgxxqbglEntity> {
 	@Description("序号")
 	@Column(columnDefinition = "varchar(255) default '' comment '序号'")
 	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "序号不能为空")
-	@Search
+	@Search(fullLike = true)
+	@Export
 	private String xh;
 
 
 	@Description("规范/公差")
 	@Column(columnDefinition = "varchar(255) default '' comment '规范/公差'")
 	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "规范/公差不能为空")
-	@Search
+	@Search(fullLike = true)
+	@Export
 	private String gfgc;
 
 	@Description("特殊特性")
 	@Column(columnDefinition = "varchar(255) default '' comment '特殊特性'")
 	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "特殊特性不能为空")
-	@Search
+	@Search(fullLike = true)
+	@Export
 	private String tstx;
 
 	@Description("仪器")
 	@Column(columnDefinition = "varchar(255) default '' comment '仪器'")
 	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "仪器不能为空")
-	@Search
+	@Search(fullLike = true)
+	@Export
 	private String yq;
 
 	@Description("频次")
 	@Column(columnDefinition = "varchar(255) default '' comment '频次'")
 	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "频次不能为空")
-	@Search
+	@Search(fullLike = true)
+	@Export
 	private String pc;
 
 	@Description("机加工序表管理id")

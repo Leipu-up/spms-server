@@ -2,6 +2,7 @@ package cn.hamm.spms.module.vx.Jjcpbgl;
 
 import cn.hamm.airpower.annotation.Description;
 import cn.hamm.airpower.annotation.Search;
+import cn.hamm.airpower.export.Export;
 import cn.hamm.spms.base.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,15 +32,22 @@ public class JjcpbglEntity extends BaseEntity<JjcpbglEntity> {
     @Description("产品名称")
     @Column(columnDefinition = "varchar(255) default '' comment '产品名称'")
     @NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "产品名称不能为空")
-    @Search
+    @Search(fullLike = true)
+    @Export
     private String cpmc;
 
     @Description("产品型号")
+    @Search(fullLike = true)
     @Column(columnDefinition = "varchar(255) default '' comment '产品型号'")
+    @NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "产品型号不能为空")
+    @Export
     private String cpxh;
 
     @Description("产品版本")
+    @Search(fullLike = true)
     @Column(columnDefinition = "varchar(255) default '' comment '产品版本'")
+    @NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "产品版本不能为空")
+    @Export
     private String cpbb;
 
 

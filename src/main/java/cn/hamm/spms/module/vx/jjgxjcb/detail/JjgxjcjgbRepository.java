@@ -19,8 +19,11 @@ import java.util.List;
 public interface JjgxjcjgbRepository extends BaseRepository<JjgxjcjgbEntity> {
 
 	// 带条件的复杂查询
-	@Query(value = "SELECT * FROM jjgxjcjgb WHERE gjzt = :gjzt AND jjgxxqbgl_id IN :ids",nativeQuery = true)
-	List<JjgxjcjgbEntity> findByGjztAndIds(@Param("gjzt") String gjzt, @Param("ids") List<Long> ids);
+	@Query(value = "select * FROM jjgxjcjgb WHERE jjgxjcb_id = :id",nativeQuery = true)
+	List<JjgxjcjgbEntity> findeAllByJjgxjcbId(@Param("id") Long id);
+
+	@Query(value = "select * FROM jjgxjcjgb WHERE jjgxjcb_id = :id and status = '1' ",nativeQuery = true)
+	List<JjgxjcjgbEntity> findeAllByJjgxjcbIdJx(@Param("id") Long id);
 
 
 	@Modifying

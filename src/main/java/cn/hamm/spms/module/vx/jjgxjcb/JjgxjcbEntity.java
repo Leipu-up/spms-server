@@ -1,10 +1,12 @@
 package cn.hamm.spms.module.vx.jjgxjcb;
 
 import cn.hamm.airpower.annotation.Description;
+import cn.hamm.airpower.annotation.Search;
+import cn.hamm.airpower.export.Export;
 import cn.hamm.spms.base.BaseEntity;
 import cn.hamm.spms.module.vx.Jjgxbgl.JjgxbglEntity;
 import cn.hamm.spms.module.vx.jjgxjcb.detail.JjgxjcjgbEntity;
-import cn.hamm.spms.module.vx.wxyh.WxyhEntity;
+import cn.hamm.spms.module.vx.jjtzb.JjtzbEntity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -34,14 +36,20 @@ public class JjgxjcbEntity extends BaseEntity<JjgxjcbEntity> {
 
 	@Description("批次号")
 	@Column(columnDefinition = "varchar(255) default '' comment '批次号'")
+	@Search(fullLike = true)
+	@Export
 	private String pch;
 
 	@Description("设备号")
 	@Column(columnDefinition = "varchar(255) default '' comment '设备号'")
+	@Search(fullLike = true)
+	@Export
 	private String sbh;
 
 	@Description("日期")
 	@Column(columnDefinition = "varchar(255) default '' comment '日期'")
+	@Search(fullLike = true)
+	@Export
 	private String rq;
 
 	@Description("状态(0:待完成,1:已完成)")
@@ -50,13 +58,15 @@ public class JjgxjcbEntity extends BaseEntity<JjgxjcbEntity> {
 
 	@Description("检验员")
 	@ManyToOne(fetch = FetchType.LAZY)
+	@Search(fullLike = true)
+	@Export
 	@JoinColumn(name = "jyy_id", foreignKey = @ForeignKey(name = "fk_jjgxjcb_jyy_id"))
-	private WxyhEntity jyy;
+	private JjtzbEntity jyy;
 
 	@Description("确认者")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "qrz_id", foreignKey = @ForeignKey(name = "fk_jjgxjcb_qrz_id"))
-	private WxyhEntity qrz;
+	private JjtzbEntity qrz;
 
 	@Description("机加工序表信息")
 	@OneToOne(fetch = EAGER)

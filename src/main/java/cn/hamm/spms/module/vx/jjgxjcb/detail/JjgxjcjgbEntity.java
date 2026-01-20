@@ -1,6 +1,8 @@
 package cn.hamm.spms.module.vx.jjgxjcb.detail;
 
 import cn.hamm.airpower.annotation.Description;
+import cn.hamm.airpower.annotation.Search;
+import cn.hamm.airpower.export.Export;
 import cn.hamm.spms.base.BaseEntity;
 import cn.hamm.spms.module.vx.Jjgxbgl.detail.JjgxxqbglEntity;
 import cn.hamm.spms.module.vx.jjgxjcb.JjgxjcbEntity;
@@ -29,10 +31,14 @@ public class JjgxjcjgbEntity extends BaseEntity<JjgxjcjgbEntity> {
 
 	@Description("工件状态(首件,工序检验,尾件)")
 	@Column(columnDefinition = "varchar(255) default '' comment '工件状态(首件,工序检验,尾件)'")
+	@Search(fullLike = true)
+	@Export
 	private String gjzt;
 
 	@Description("检查时间")
 	@Column(columnDefinition = "varchar(255) default '' comment '检查时间'")
+	@Search(fullLike = true)
+	@Export
 	private String jcsj;
 
 	@Description("实测值")
@@ -41,10 +47,14 @@ public class JjgxjcjgbEntity extends BaseEntity<JjgxjcjgbEntity> {
 
 	@Description("判定结果(OK/NG)")
 	@Column(columnDefinition = "varchar(255) default '' comment '判定结果(OK/NG)'")
+	@Search(fullLike = true)
+	@Export
 	private String pdjg;
 
 	@Description("不合格品报告")
 	@Column(columnDefinition = "varchar(255) default '' comment '不合格品报告'")
+	@Search(fullLike = true)
+	@Export
 	private String bhepbg;
 
 	@Description("机加工序检查表")
