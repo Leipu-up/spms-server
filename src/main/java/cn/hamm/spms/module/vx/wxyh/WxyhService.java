@@ -14,7 +14,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class WxyhService extends BaseService<WxyhEntity, WxyhRepository> {
 
-	@Autowired WxyhRepository wxyhRepository;
+	@Autowired
+	WxyhRepository wxyhRepository;
 
 	public WxyhEntity findByPhoneNo(String phone, String employeeNo, String password) {
 		return wxyhRepository.findByPhoneNo(phone, employeeNo, password);

@@ -4,6 +4,7 @@ import cn.hamm.airpower.annotation.Description;
 import cn.hamm.airpower.annotation.Search;
 import cn.hamm.airpower.desensitize.Desensitize;
 import cn.hamm.airpower.dictionary.Dictionary;
+import cn.hamm.airpower.export.Export;
 import cn.hamm.airpower.validate.Phone;
 import cn.hamm.spms.base.BaseEntity;
 import cn.hamm.spms.module.personnel.user.IUserAction;
@@ -39,7 +40,8 @@ public class WxyhEntity extends BaseEntity<WxyhEntity> {
     @Description("用户昵称")
     @Column(columnDefinition = "varchar(255) default '' comment '昵称'")
     @NotBlank(groups = {WhenUpdate.class, WhenAdd.class, IUserAction.WhenUpdateMyInfo.class}, message = "昵称不能为空")
-    @Search
+    @Search(fullLike = true)
+    @Export
     private String nickname;
 
     @Description("头像")
@@ -49,15 +51,21 @@ public class WxyhEntity extends BaseEntity<WxyhEntity> {
     @Description("真实姓名")
     @Desensitize(CHINESE_NAME)
     @Column(columnDefinition = "varchar(255) default '' comment '真实姓名'")
+    @Search(fullLike = true)
+    @Export
     private String realName;
 
     @Description("身份证号")
     @Desensitize(ID_CARD)
     @Column(columnDefinition = "varchar(255) default '' comment '身份证号'")
+    @Search(fullLike = true)
+    @Export
     private String idCard;
 
     @Description("工号")
     @Column(columnDefinition = "varchar(255) default '' comment '工号'")
+    @Search(fullLike = true)
+    @Export
     private String employeeNo;
 
     @Description("登录密码")
@@ -67,7 +75,8 @@ public class WxyhEntity extends BaseEntity<WxyhEntity> {
     @Description("手机号")
     @Column(columnDefinition = "varchar(255) default '' comment '手机号'", unique = true)
     @Phone(groups = {IUserAction.WhenResetMyPassword.class, IUserAction.WhenSendSms.class}, message = "手机格式不正确")
-    @Search
+    @Search(fullLike = true)
+    @Export
     private String phone;
 
     @Description("性别")

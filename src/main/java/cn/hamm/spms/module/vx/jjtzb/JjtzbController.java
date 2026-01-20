@@ -1,5 +1,6 @@
-package cn.hamm.spms.module.vx.wxyh;
+package cn.hamm.spms.module.vx.jjtzb;
 
+import cn.hamm.airpower.access.Permission;
 import cn.hamm.airpower.annotation.Description;
 import cn.hamm.airpower.api.Api;
 import cn.hamm.airpower.api.Extends;
@@ -11,9 +12,10 @@ import cn.hamm.spms.base.BaseController;
  *
  * @author Hamm.cn
  */
-@Api("wxyh")
-@Description("小程序用户")
+@Api("wechat/jjtzb")
+@Permission(login = false)
+@Description("机加通知表")
 @Extends({Curd.Export, Curd.QueryExport})
-public class WxyhController extends BaseController<WxyhEntity, WxyhService, WxyhRepository> {
+public class JjtzbController extends BaseController<JjtzbEntity, JjtzbService, JjtzbRepository> {
 
 }
