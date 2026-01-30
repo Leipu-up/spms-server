@@ -3,9 +3,10 @@ package cn.hamm.spms.module.jmjy.jmyyb;
 import cn.hamm.airpower.annotation.Description;
 import cn.hamm.airpower.annotation.Search;
 import cn.hamm.spms.base.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import cn.hamm.spms.module.jmjy.jmfwb.JmfwbEntity;
+import cn.hamm.spms.module.jmjy.jmkhb.JmkhbEntity;
+import cn.hamm.spms.module.jmjy.jmygb.JmygbEntity;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,19 +31,19 @@ public class JmyybEntity extends BaseEntity<JmyybEntity> {
 
 	@Description("预约日期")
 	@Column(columnDefinition = "varchar(255) default '' comment '预约日期'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "预约日期不能为空")
+	@NotBlank(groups = {WhenAdd.class}, message = "预约日期不能为空")
 	@Search
 	private String yyrq;
 
 	@Description("预约时间")
 	@Column(columnDefinition = "varchar(255) default '' comment '预约时间'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "预约时间不能为空")
+	@NotBlank(groups = {WhenAdd.class}, message = "预约时间不能为空")
 	@Search
 	private String yysj;
 
 	@Description("预约时长")
 	@Column(columnDefinition = "varchar(255) default '' comment '预约时长'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "预约时长不能为空")
+	@NotBlank(groups = {WhenAdd.class}, message = "预约时长不能为空")
 	@Search
 	private String yysc;
 
@@ -56,5 +57,20 @@ public class JmyybEntity extends BaseEntity<JmyybEntity> {
 	@Column(columnDefinition = "varchar(255) default '' comment '备注'")
 	@Search
 	private String bz;
+
+	@Description("句美员工表")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "jmygb_id", foreignKey = @ForeignKey(name = "fk_jmyyb_jmygb_id"))
+	private JmygbEntity jmygb;
+
+	@Description("句美服务表")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "jmfwb_id", foreignKey = @ForeignKey(name = "fk_jmyyb_jmfwb_id"))
+	private JmfwbEntity jmfwb;
+
+	@Description("句美客户表")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "jmkhb_id", foreignKey = @ForeignKey(name = "fk_jmyyb_jmkhb_id"))
+	private JmkhbEntity jmkhb;
 
 }

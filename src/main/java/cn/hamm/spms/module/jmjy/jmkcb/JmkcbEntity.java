@@ -31,13 +31,12 @@ public class JmkcbEntity extends BaseEntity<JmkcbEntity> {
 	@Description("商品名称")
 	@Column(columnDefinition = "varchar(255) default '' comment '商品名称'")
 	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "商品名称不能为空")
-	@Search
+	@Search(fullLike = true)
 	private String spmc;
 
 
 	@Description("商品分类(护肤,仪器,工具,消耗品,其他)")
 	@Column(columnDefinition = "varchar(5) default '' comment '商品分类(护肤,仪器,工具,消耗品,其他)'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "商品分类不能为空")
 	@Search
 	private String spfl;
 
@@ -49,13 +48,11 @@ public class JmkcbEntity extends BaseEntity<JmkcbEntity> {
 
 	@Description("当前库存")
 	@Column(columnDefinition = "bigint(20) unsigned DEFAULT '0' comment '当前库存'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "当前库存不能为空")
 	@Search
 	private Long dqkc;
 
 	@Description("库存预警")
 	@Column(columnDefinition = "bigint(20) unsigned DEFAULT '0' comment '库存预警'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "库存预警不能为空")
 	@Search
 	private Long kcyj;
 
@@ -67,6 +64,12 @@ public class JmkcbEntity extends BaseEntity<JmkcbEntity> {
 	@Description("句美商店表id")
 	@Column(columnDefinition = "bigint UNSIGNED comment '句美商店表id'")
 	private Long jmsdbId;
+
+	@Description("句美商店表名称")
+	@Column(columnDefinition = "varchar(255) default '' comment '句美商店表名称'")
+	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "句美商店表名称不能为空")
+	@Search
+	private String jmsdbName;
 
 
 

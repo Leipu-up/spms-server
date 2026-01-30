@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public interface JmygbRepository extends BaseRepository<JmygbEntity> {
 
 
-	@Query(value = "SELECT * FROM jmygb WHERE sjh = :sjh and password = :password ", nativeQuery = true)
+	@Query(value = "SELECT * FROM jmygb WHERE (sjh = :sjh OR employee_no = :sjh) and password = :password ", nativeQuery = true)
 	JmygbEntity findByPhoneNo(@Param("sjh") String sjh, @Param("password") String password);
 
 }

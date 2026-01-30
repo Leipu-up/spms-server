@@ -7,6 +7,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -36,7 +37,7 @@ public class JmfwbEntity extends BaseEntity<JmfwbEntity> {
 
 	@Description("服务价格")
 	@Column(columnDefinition = " double(20,2) unsigned DEFAULT '0.00' comment '服务价格'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "服务价格不能为空")
+	@NotNull(groups = {WhenUpdate.class, WhenAdd.class}, message = "服务价格不能为空")
 	@Search
 	private Double fwjg;
 
@@ -46,8 +47,8 @@ public class JmfwbEntity extends BaseEntity<JmfwbEntity> {
 	@Search
 	private String fwsc;
 
-	@Description("服务分类(面部护理,身体护理,其他)")
-	@Column(columnDefinition = "varchar(255) default '' comment '服务分类(面部护理,身体护理,其他)'")
+	@Description("服务分类(面部护理,身体护理,其他服务)")
+	@Column(columnDefinition = "varchar(255) default '' comment '服务分类(面部护理,身体护理,其他服务)'")
 	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "服务分类不能为空")
 	@Search
 	private String fwfl;

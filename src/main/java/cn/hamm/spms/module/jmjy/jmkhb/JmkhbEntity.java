@@ -42,25 +42,21 @@ public class JmkhbEntity extends BaseEntity<JmkhbEntity> {
 
 	@Description("客户性别")
 	@Column(columnDefinition = "varchar(255) default '' comment '客户性别'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "客户性别不能为空")
 	@Search
 	private String khxb;
 
 	@Description("客户生日")
 	@Column(columnDefinition = "varchar(255) default '' comment '客户生日'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "客户生日不能为空")
 	@Search
 	private String khsr;
 
 	@Description("客户等级(普通,银卡,金卡,钻石,至尊)")
 	@Column(columnDefinition = "varchar(255) default '' comment '客户等级(普通,银卡,金卡,钻石,至尊)'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "客户等级不能为空")
 	@Search
 	private String khdj;
 
 	@Description("客户来源(门店到访,朋友推荐,线上预约,活动引流,其他)")
 	@Column(columnDefinition = "varchar(255) default '' comment '客户来源(门店到访,朋友推荐,线上预约,活动引流,其他)'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "客户来源不能为空")
 	@Search
 	private String khly;
 

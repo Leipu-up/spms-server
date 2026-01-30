@@ -24,7 +24,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @Data
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "jmyyb")
+@Table(name = "jmygb")
 @Description("句美员工表")
 public class JmygbEntity extends BaseEntity<JmygbEntity> {
 
@@ -81,6 +81,23 @@ public class JmygbEntity extends BaseEntity<JmygbEntity> {
 	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "入职时间不能为空")
 	@Search
 	private String joinDate;
+
+	@Description("商店表名称")
+	@Column(columnDefinition = "varchar(255) default '' comment '商店表名称'")
+	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "商店表名称不能为空")
+	@Search
+	private String jmsdbName;
+
+	@Description("在职状态")
+	@Column(columnDefinition = "varchar(25) default '在职' comment '在职状态'")
+	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "在职状态不能为空")
+	@Search
+	private String status;
+
+	@Description("备注")
+	@Column(columnDefinition = "varchar(25) default '' comment '备注'")
+	@Search
+	private String bz;
 
 
 

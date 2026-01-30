@@ -14,7 +14,7 @@ import static cn.hamm.airpower.curd.Curd.QueryExport;
  *
  * @author Hamm.cn
  */
-@Api("wechat/jmpbb")
+@Api("jmjy/jmpbb")
 @Permission(login = false)
 @Description("句美排班表")
 @Extends(exclude = {Export, QueryExport})

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Permission(login = false)
 @Controller
-@RequestMapping("wechat/jmjy")
+@RequestMapping("jmjy")
 public class JmjyController extends ApiController {
 
 	@Autowired

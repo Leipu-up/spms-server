@@ -2231,7 +2231,9 @@ CREATE TABLE `jmygb` (
                          `rolename` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '美容师' COMMENT '角色名称(美容师,前台,店长,管理员)',
                          `level` varchar(2) COLLATE utf8mb4_unicode_ci DEFAULT '1' COMMENT '权限等级(1,2,3,4)',
                          `join_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '入职时间',
-                         `jmsdb_id` bigint(20) unsigned NOT NULL  COMMENT '句美商店表id',
+                         `status` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT '在职' COMMENT '在职状态(在职,离职)',
+                         `jmsdb_id` bigint(20) unsigned   COMMENT '句美商店表id',
+                         `jmsdb_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '句美商店表名称',
                          PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='句美员工表';
 
@@ -2283,11 +2285,11 @@ CREATE TABLE `jmyyb` (
                          `yyrq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '预约日期',
                          `yysj` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '预约时间',
                          `yysc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '预约时长(60,90,120,150,180分钟)',
-                         `zt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '状态(待服务,已确认,已服务,已超时)',
+                         `zt` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '状态(待服务,已确认,已服务,已超时,已取消)',
                          `bz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
                          `jmfwb_id` bigint(20) unsigned NOT NULL  COMMENT '句美服务表id',
                          `jmygb_id` bigint(20) unsigned NOT NULL  COMMENT '句美员工表id',
-                         `jmygb_id` bigint(20) unsigned NOT NULL  COMMENT '句美员工表id',
+                         `jmkhb_id` bigint(20) unsigned NOT NULL  COMMENT '句美客户表id',
                          PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='句美预约表';
 
@@ -2302,7 +2304,8 @@ CREATE TABLE `jmkcb` (
                          `dqkc` bigint(20) unsigned DEFAULT '0'  COMMENT '当前库存',
                          `kcyj` bigint(20) unsigned DEFAULT '1'  COMMENT '库存预警',
                          `bz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
-                         `jmsdb_id` bigint(20) unsigned NOT NULL  COMMENT '句美商店表id',
+                         `jmsdb_id` bigint(20) unsigned   COMMENT '句美商店表id',
+                         `jmsdb_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '句美商店表名称',
                          PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='句美库存表';
 

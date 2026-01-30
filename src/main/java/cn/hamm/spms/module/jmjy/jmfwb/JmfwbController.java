@@ -14,7 +14,7 @@ import static cn.hamm.airpower.curd.Curd.QueryExport;
  *
  * @author Hamm.cn
  */
-@Api("wechat/jmfwb")
+@Api("jmjy/jmfwb")
 @Permission(login = false)
 @Description("句美服务表")
 @Extends(exclude = {Export, QueryExport})

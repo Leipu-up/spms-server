@@ -3,9 +3,9 @@ package cn.hamm.spms.module.jmjy.jmkcb.jmrkb;
 import cn.hamm.airpower.annotation.Description;
 import cn.hamm.airpower.annotation.Search;
 import cn.hamm.spms.base.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import cn.hamm.spms.module.jmjy.jmkcb.JmkcbEntity;
+import cn.hamm.spms.module.jmjy.jmygb.JmygbEntity;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,9 +30,8 @@ public class JmrkbEntity extends BaseEntity<JmrkbEntity> {
 
 	@Description("入库数量")
 	@Column(columnDefinition = "bigint(20) unsigned DEFAULT '1'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "入库数量不能为空")
 	@Search
-	private String rksl;
+	private Long rksl;
 
 	@Description("入库时间")
 	@Column(columnDefinition = "varchar(255) default '' comment '入库时间'")
@@ -45,12 +44,16 @@ public class JmrkbEntity extends BaseEntity<JmrkbEntity> {
 	@Search
 	private String bz;
 
-	@Description("句美库存表id")
-	@Column(columnDefinition = "bigint UNSIGNED comment '句美库存表id'")
-	private Long jmkcbId;
 
-	@Description("句美员工表id")
-	@Column(columnDefinition = "bigint UNSIGNED comment '句美员工表id'")
-	private Long jmygbId;
+	@Description("句美库存表")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "jmkcb_id", foreignKey = @ForeignKey(name = "fk_jmrkb_jmkcb_id"))
+	private JmkcbEntity jjkcb;
+
+
+	@Description("句美员工")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "jmygb_id", foreignKey = @ForeignKey(name = "fk_jmrkb_jmygb_id"))
+	private JmygbEntity jjygb;
 
 }

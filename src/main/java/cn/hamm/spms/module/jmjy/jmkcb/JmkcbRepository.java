@@ -13,4 +13,5 @@ public interface JmkcbRepository extends BaseRepository<JmkcbEntity> {
 
 
 
+
 }
