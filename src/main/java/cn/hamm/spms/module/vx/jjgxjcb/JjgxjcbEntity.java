@@ -6,7 +6,7 @@ import cn.hamm.airpower.export.Export;
 import cn.hamm.spms.base.BaseEntity;
 import cn.hamm.spms.module.vx.Jjgxbgl.JjgxbglEntity;
 import cn.hamm.spms.module.vx.jjgxjcb.detail.JjgxjcjgbEntity;
-import cn.hamm.spms.module.vx.jjtzb.JjtzbEntity;
+import cn.hamm.spms.module.vx.wxyh.WxyhEntity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -61,12 +61,12 @@ public class JjgxjcbEntity extends BaseEntity<JjgxjcbEntity> {
 	@Search(fullLike = true)
 	@Export
 	@JoinColumn(name = "jyy_id", foreignKey = @ForeignKey(name = "fk_jjgxjcb_jyy_id"))
-	private JjtzbEntity jyy;
+	private WxyhEntity jyy;
 
 	@Description("确认者")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "qrz_id", foreignKey = @ForeignKey(name = "fk_jjgxjcb_qrz_id"))
-	private JjtzbEntity qrz;
+	private WxyhEntity qrz;
 
 	@Description("机加工序表信息")
 	@OneToOne(fetch = EAGER)

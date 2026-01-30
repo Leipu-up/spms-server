@@ -9,14 +9,13 @@ import cn.hamm.spms.module.vx.Jjgxbgl.JjgxbglEntity;
 import cn.hamm.spms.module.vx.Jjgxbgl.JjgxbglService;
 import cn.hamm.spms.module.vx.Jjgxbgl.detail.JjgxxqbglEntity;
 import cn.hamm.spms.module.vx.Jjgxbgl.detail.JjgxxqbglService;
-import cn.hamm.spms.module.vx.wxyh.WxyhEntity;
-import cn.hamm.spms.module.vx.wxyh.WxyhService;
 import cn.hamm.spms.module.vx.jjgxjcb.JjgxjcbEntity;
 import cn.hamm.spms.module.vx.jjgxjcb.JjgxjcbService;
 import cn.hamm.spms.module.vx.jjgxjcb.detail.JjgxjcjgbEntity;
 import cn.hamm.spms.module.vx.jjgxjcb.detail.JjgxjcjgbService;
-import cn.hamm.spms.module.vx.jjtzb.JjtzbEntity;
 import cn.hamm.spms.module.vx.jjtzb.JjtzbService;
+import cn.hamm.spms.module.vx.wxyh.WxyhEntity;
+import cn.hamm.spms.module.vx.wxyh.WxyhService;
 import cn.hamm.spms.module.wechat.dto.RwDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -73,8 +72,8 @@ public class WechatController extends ApiController {
 	//用户
 	@RequestMapping(value = "getUserOne")
 	@ResponseBody
-	public JjtzbEntity getUserOne() {
-		JjtzbEntity jjtzbEntity = jjtzbService.get(4);
+	public WxyhEntity getUserOne() {
+		WxyhEntity jjtzbEntity =  wxyhService.get(4);
 
 		return jjtzbEntity;
 
@@ -219,9 +218,9 @@ public class WechatController extends ApiController {
 
 	@RequestMapping(value = "my/getMyRwList")
 	@ResponseBody
-	public Json getMyRwList(@RequestBody JjtzbEntity jjtzbEntity) {
-		List<JjgxjcbEntity> jjgxjcbEntityList = jjgxjcbService.query(new JjgxjcbEntity().setJyy(jjtzbEntity));
-		List<JjgxjcbEntity> jjgxjcbJxEntityList = jjgxjcbService.query(new JjgxjcbEntity().setJyy(jjtzbEntity).setStatus("0"));
+	public Json getMyRwList(@RequestBody WxyhEntity wxyhEntity) {
+		List<JjgxjcbEntity> jjgxjcbEntityList = jjgxjcbService.query(new JjgxjcbEntity().setJyy(wxyhEntity));
+		List<JjgxjcbEntity> jjgxjcbJxEntityList = jjgxjcbService.query(new JjgxjcbEntity().setJyy(wxyhEntity).setStatus("0"));
 		int zs = jjgxjcbEntityList.size();
 		int jx = jjgxjcbJxEntityList.size();
 		RwDto rwDto = new RwDto();
