@@ -41,4 +41,8 @@ public class JmpbbEntity extends BaseEntity<JmpbbEntity> {
 	@JoinColumn(name = "jmygb_id", foreignKey = @ForeignKey(name = "fk_jmpbb_jmygb_id"))
 	private JmygbEntity jmygb;
 
+	@Transient
+	@Description("排班日期数组")
+	private String[] selectedDates;
+
 }
