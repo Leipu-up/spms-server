@@ -2093,6 +2093,17 @@ CREATE TABLE `jjgxjcjgb` (
                            PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='机加工序检查结果表';
 
+DROP TABLE IF EXISTS `jjgxjcdjb`;
+CREATE TABLE `jjgxjcdjb` (
+                             `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                             `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                             `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                             `djscz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '刀具实测值',
+                             `jjgxjcb_id` bigint(20) unsigned NOT NULL  COMMENT '机加工序检查表id',
+                             `jjgxxqbgl_id` bigint(20) unsigned NOT NULL  COMMENT '机加工序详情表id',
+                             PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='机加工序检查换刀表';
+
 
 INSERT INTO spms.permission
 (is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)

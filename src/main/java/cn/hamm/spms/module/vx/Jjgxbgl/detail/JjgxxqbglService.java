@@ -26,4 +26,6 @@ public class JjgxxqbglService extends BaseService<JjgxxqbglEntity, JjgxxqbglRepo
 		repository.deleteAllByJjgxbglId(id);
 	}
 
+
+
 }

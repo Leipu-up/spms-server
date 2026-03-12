@@ -5,6 +5,7 @@ import cn.hamm.airpower.annotation.Search;
 import cn.hamm.airpower.export.Export;
 import cn.hamm.spms.base.BaseEntity;
 import cn.hamm.spms.module.vx.Jjgxbgl.JjgxbglEntity;
+import cn.hamm.spms.module.vx.jjgxjcb.detail.JjgxjcdjbEntity;
 import cn.hamm.spms.module.vx.jjgxjcb.detail.JjgxjcjgbEntity;
 import cn.hamm.spms.module.vx.wxyh.WxyhEntity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -76,5 +77,10 @@ public class JjgxjcbEntity extends BaseEntity<JjgxjcbEntity> {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "jjgxjcb")
 	@JsonManagedReference
 	private List<JjgxjcjgbEntity> jjgxjcjgbEntityList;
+
+	@Description("机加工序检查刀具表信息")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "jjgxjcb")
+	@JsonManagedReference
+	private List<JjgxjcdjbEntity> jjgxjcdjbEntityList;
 
 }

@@ -77,3 +77,153 @@ CREATE TABLE `jjtzb` (
                          `content` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '内容',
                          PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='机加通知表';
+
+
+----------------------0311----------------
+
+DROP TABLE IF EXISTS `jjgxjcdjb`;
+CREATE TABLE `jjgxjcdjb` (
+                             `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                             `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                             `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                             `djscz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '刀具实测值',
+                             `jjgxjcb_id` bigint(20) unsigned NOT NULL  COMMENT '机加工序检查表id',
+                             `jjgxxqbgl_id` bigint(20) unsigned NOT NULL  COMMENT '机加工序详情表id',
+                             PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='机加工序检查换刀表';
+
+
+DROP TABLE IF EXISTS `jjwxjcb`;
+CREATE TABLE `jjwxjcb` (
+                           `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                           `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                           `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                           `gysmc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '供应商名称',
+                           `jjcpbgl_id` bigint(20) unsigned NOT NULL  COMMENT '机加产品表管理id',
+                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='机加外协检查表';
+
+DROP TABLE IF EXISTS `jjwxjcxxb`;
+CREATE TABLE `jjwxjcxxb` (
+                             `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                             `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                             `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                             `xh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '序号',
+                             `gfgc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '规范/公差',
+                             `tstx` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '特殊特性',
+                             `yq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '仪器',
+                             `ypsl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '样品数量',
+                             `jjwxjcb_id` bigint(20) unsigned NOT NULL   COMMENT '机加外协检查表id',
+                             PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='机加外协检查详情表';
+
+
+DROP TABLE IF EXISTS `jjwxjcjgb`;
+CREATE TABLE `jjwxjcjgb` (
+                           `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                           `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                           `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                           `pch` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '批次号',
+                           `jyy_id` bigint(20) unsigned NOT NULL  COMMENT '检验员id',
+                           `rq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '日期',
+                           `phsl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '批货数量',
+                           `ccslwg` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '抽查数量外观',
+                           `ccslcc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '抽查数量尺寸',
+                           `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态(0:待完成,1:已完成)',
+                           `pdjg` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '判定结果',
+                           `bz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
+                           `jjwxjcb_id` bigint(20) unsigned NOT NULL  COMMENT '机加外协检查表id',
+                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='机加外协检查结果表';
+
+DROP TABLE IF EXISTS `jjwxjcjgxxb`;
+CREATE TABLE `jjwxjcjgxxb` (
+                             `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                             `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                             `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                             `scz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '实测值',
+                             `jjwxjcjgb_id` bigint(20) unsigned NOT NULL  COMMENT '机加外协检查结果表id',
+                             `jjwxjcb_id` bigint(20) unsigned NOT NULL  COMMENT '机加外协检查id',
+                             `jjwxjcxxb_id` bigint(20) unsigned NOT NULL  COMMENT '机加外协检查详情表id',
+                             PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='机加外协检查结果详情表';
+
+
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933144920, 560, 557, 1765938768375, '机加外协检查表_不分页查询', 'Jjwxjcb_getList');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933024543, 561, 557, 1765938794390, '机加外协检查表-修改', 'Jjwxjcb_update');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933117515, 562, 557, 1765938773347, '机加外协检查表-分页查询', 'Jjwxjcb_getPage');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933047910, 563, 557, 1765938789534, '机加外协检查表-删除', 'Jjwxjcb_delete');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933070829, 564, 557, 1765938784205, '机加外协检查表-启用', 'Jjwxjcb_enable');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933168787, 565, 557, 1765938761231, '机加外协检查表-查询详情', 'Jjwxjcb_getDetail');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765932979076, 567, 557, 1765938800099, '机加外协检查表-添加', 'Jjwxjcb_add');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933092380, 568, 557, 1765938778787, '机加外协检查表-禁用', 'Jjwxjcb_disable');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765932939234, 557, 0, 1765938305801, '机加外协检查表', 'Jjwxjcb');
+
+commit;
+
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933144920, 570, 558, 1765938768375, '机加外协检查详细表_不分页查询', 'Jjwxjcjgb_getList');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933024543, 571, 558, 1765938794390, '机加外协检查详细表-修改', 'Jjwxjcjgb_update');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933117515, 572, 558, 1765938773347, '机加外协检查详细表-分页查询', 'Jjwxjcjgb_getPage');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933047910, 573, 558, 1765938789534, '机加外协检查详细表-删除', 'Jjwxjcjgb_delete');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933070829, 574, 558, 1765938784205, '机加外协检查详细表-启用', 'Jjwxjcjgb_enable');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933168787, 575, 558, 1765938761231, '机加外协检查详细表-查询详情', 'Jjwxjcjgb_getDetail');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765932979076, 576, 558, 1765938800099, '机加外协检查详细表-添加', 'Jjwxjcjgb_add');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933092380, 577, 558, 1765938778787, '机加外协检查详细表-禁用', 'Jjwxjcjgb_disable');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765932939234, 578, 0, 1765938305801, '机加外协检查详细表', 'Jjwxjcjgb');
+
+commit;
+

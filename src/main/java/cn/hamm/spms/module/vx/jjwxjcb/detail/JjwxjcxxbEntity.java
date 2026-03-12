@@ -1,4 +1,4 @@
-package cn.hamm.spms.module.vx.Jjgxbgl.detail;
+package cn.hamm.spms.module.vx.jjwxjcb.detail;
 
 import cn.hamm.airpower.annotation.Description;
 import cn.hamm.airpower.annotation.Search;
@@ -7,7 +7,6 @@ import cn.hamm.spms.base.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -26,9 +25,9 @@ import org.hibernate.annotations.DynamicUpdate;
 @Data
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "jjgxxqbgl")
-@Description("机加工序详情表管理")
-public class JjgxxqbglEntity extends BaseEntity<JjgxxqbglEntity> {
+@Table(name = "jjwxjcxxb")
+@Description("机加外协检查详情表")
+public class JjwxjcxxbEntity extends BaseEntity<JjwxjcxxbEntity> {
 
 	@Description("序号")
 	@Column(columnDefinition = "varchar(255) default '' comment '序号'")
@@ -59,28 +58,18 @@ public class JjgxxqbglEntity extends BaseEntity<JjgxxqbglEntity> {
 	@Export
 	private String yq;
 
-	@Description("频次")
-	@Column(columnDefinition = "varchar(255) default '' comment '频次'")
-	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "频次不能为空")
+	@Description("样品数量")
+	@Column(columnDefinition = "varchar(255) default '' comment '样品数量'")
+	@NotBlank(groups = {WhenUpdate.class, WhenAdd.class}, message = "样品数量不能为空")
 	@Search(fullLike = true)
 	@Export
-	private String pc;
+	private String ypsl;
 
-	@Description("刀具")
-	@Column(columnDefinition = "varchar(255) default '' comment '刀具'")
-	@Search(fullLike = true)
-	@Export
-	private String dj;
 
-	@Description("机加工序表管理id")
-	@Column(columnDefinition = "bigint UNSIGNED comment '机加工序表管理id'")
-	private Long jjgxbglId;
+	@Description("机加外协检查表id")
+	@Column(columnDefinition = "bigint UNSIGNED comment '机加外协检查表id'")
+	private Long jjwxjcbId;
 
-	@Transient
-	private Long  jjgxjcbId;
-
-	@Transient
-	private String djscz;
 
 
 }

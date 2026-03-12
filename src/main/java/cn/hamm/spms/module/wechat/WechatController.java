@@ -11,9 +11,19 @@ import cn.hamm.spms.module.vx.Jjgxbgl.detail.JjgxxqbglEntity;
 import cn.hamm.spms.module.vx.Jjgxbgl.detail.JjgxxqbglService;
 import cn.hamm.spms.module.vx.jjgxjcb.JjgxjcbEntity;
 import cn.hamm.spms.module.vx.jjgxjcb.JjgxjcbService;
+import cn.hamm.spms.module.vx.jjgxjcb.detail.JjgxjcdjbEntity;
+import cn.hamm.spms.module.vx.jjgxjcb.detail.JjgxjcdjbService;
 import cn.hamm.spms.module.vx.jjgxjcb.detail.JjgxjcjgbEntity;
 import cn.hamm.spms.module.vx.jjgxjcb.detail.JjgxjcjgbService;
 import cn.hamm.spms.module.vx.jjtzb.JjtzbService;
+import cn.hamm.spms.module.vx.jjwxjcb.JjwxjcbEntity;
+import cn.hamm.spms.module.vx.jjwxjcb.JjwxjcbService;
+import cn.hamm.spms.module.vx.jjwxjcb.detail.JjwxjcxxbEntity;
+import cn.hamm.spms.module.vx.jjwxjcb.detail.JjwxjcxxbService;
+import cn.hamm.spms.module.vx.jjwxjcjgb.JjwxjcjgbEntity;
+import cn.hamm.spms.module.vx.jjwxjcjgb.JjwxjcjgbService;
+import cn.hamm.spms.module.vx.jjwxjcjgb.detail.JjwxjcjgxxbEntity;
+import cn.hamm.spms.module.vx.jjwxjcjgb.detail.JjwxjcjgxxbService;
 import cn.hamm.spms.module.vx.wxyh.WxyhEntity;
 import cn.hamm.spms.module.vx.wxyh.WxyhService;
 import cn.hamm.spms.module.wechat.dto.RwDto;
@@ -23,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,6 +64,24 @@ public class WechatController extends ApiController {
 	@Autowired
 	private JjgxjcjgbService jjgxjcjgbService;
 
+	@Autowired
+	private JjgxjcdjbService jjgxjcdjbService;
+
+	@Autowired
+	private JjwxjcbService jjwxjcbService;
+
+	@Autowired
+	private JjwxjcxxbService jjwxjcxxbService;
+
+	@Autowired
+	private JjwxjcjgbService jjwxjcjgbService;
+
+	@Autowired
+	private JjwxjcjgxxbService jjwxjcjgxxbService;
+
+
+
+
 	/**
 	 * {@code Success}
 	 */
@@ -73,7 +102,7 @@ public class WechatController extends ApiController {
 	@RequestMapping(value = "getUserOne")
 	@ResponseBody
 	public WxyhEntity getUserOne() {
-		WxyhEntity jjtzbEntity =  wxyhService.get(4);
+		WxyhEntity jjtzbEntity = wxyhService.get(4);
 
 		return jjtzbEntity;
 
@@ -126,6 +155,99 @@ public class WechatController extends ApiController {
 		return jjgxjcb;
 	}
 
+	@RequestMapping(value = "wxjc/getPage")
+	@ResponseBody
+	public Json geWxjcPage(@RequestBody QueryPageRequest<JjwxjcbEntity> queryPageRequest) {
+		QueryPageResponse<JjwxjcbEntity> queryPageResponse = jjwxjcbService.getPage(queryPageRequest);
+		return Json.data(queryPageResponse);
+	}
+
+	@RequestMapping(value = "wxjc/saveOne")
+	@ResponseBody
+	public JjwxjcjgbEntity saveWxjcOne(@RequestBody JjwxjcjgbEntity jjgxjcjgb) {
+		jjwxjcjgbService.add(jjgxjcjgb);
+		return jjgxjcjgb;
+	}
+
+	@RequestMapping(value = "wxjcjgb/getPage")
+	@ResponseBody
+	public Json getWxjcjgbPage(@RequestBody QueryPageRequest<JjwxjcjgbEntity> queryPageRequest) {
+		QueryPageResponse<JjwxjcjgbEntity> queryPageResponse = jjwxjcjgbService.getPage(queryPageRequest);
+		return Json.data(queryPageResponse);
+	}
+
+	@RequestMapping(value = "wxjcjgb/saveOne")
+	@ResponseBody
+	public JjwxjcjgxxbEntity saveWxjcjgbWorkOne(@RequestBody JjwxjcjgxxbEntity jjwxjcjgxxb) {
+		jjwxjcjgxxbService.add(jjwxjcjgxxb);
+		return jjwxjcjgxxb;
+	}
+
+	@RequestMapping(value = "wxjcjgb/updateWorkOne")
+	@ResponseBody
+	public JjwxjcjgbEntity updateWxjcjgbWorkOne(@RequestBody JjwxjcjgbEntity jjwxjcjgb) {
+		JjwxjcjgbEntity wxyh = jjwxjcjgbService.get(jjwxjcjgb.getId());
+		wxyh.setPch(jjwxjcjgb.getPch());
+		wxyh.setPhsl(jjwxjcjgb.getPhsl());
+		wxyh.setCcslcc(jjwxjcjgb.getCcslcc());
+		wxyh.setCcslwg(jjwxjcjgb.getCcslwg());
+		wxyh.setRq(jjwxjcjgb.getRq());
+		jjwxjcjgbService.update(wxyh);
+		return wxyh;
+	}
+	@RequestMapping(value = "wxjcjgb/deleteWorkOne")
+	@ResponseBody
+	public Json deleteWxjcjgbWorkOne(@RequestBody JjwxjcjgbEntity jjwxjcjgb) {
+		//先删除检查结果表
+		jjwxjcjgxxbService.deleteAllByJjgxjcbId(jjwxjcjgb.getId());
+		//再删除检查表
+		jjwxjcjgbService.delete(jjwxjcjgb.getId());
+		return Json.data(STRING_SUCCESS);
+	}
+
+	@RequestMapping(value = "wxjcjgb/getJjgxjcjgbList")
+	@ResponseBody
+	public Json getWxjcjgbJjgxjcjgbList(@RequestBody JjwxjcjgxxbEntity queryPageRequest) {
+		List<JjwxjcjgxxbEntity> list = jjwxjcjgxxbService.query(queryPageRequest);
+		return Json.data(list);
+	}
+
+	@RequestMapping(value = "wxjcjgb/saveJjgxjcjgb")
+	@ResponseBody
+	public Json saveWxjcjgbJjgxjcjgb(@RequestBody JjwxjcjgxxbEntity jjwxjcjgxxb) {
+		Long id = jjwxjcjgxxb.getId();
+		if (id == null) {
+			jjwxjcjgxxbService.add(jjwxjcjgxxb);
+		} else {
+			JjwxjcjgxxbEntity wxyh = jjwxjcjgxxbService.get(jjwxjcjgxxb.getId());
+			wxyh.setScz(jjwxjcjgxxb.getScz());
+			jjwxjcjgxxbService.update(wxyh);
+		}
+
+		return Json.data(STRING_SUCCESS);
+	}
+
+	@RequestMapping(value = "wxjcjgb/getWorkListPage")
+	@ResponseBody
+	public Json getWxjcjgbWorkListPage(@RequestBody QueryPageRequest<JjwxjcxxbEntity> queryPageRequest) {
+		QueryPageResponse<JjwxjcxxbEntity> queryPageResponse = jjwxjcxxbService.getPage(queryPageRequest);
+		return Json.data(queryPageResponse);
+	}
+
+	@RequestMapping(value = "wxjcjgb/updateJjwxjcjgb")
+	@ResponseBody
+	public JjwxjcjgbEntity updateJjwxjcjgb(@RequestBody JjwxjcjgbEntity jjgxjcb) {
+		JjwxjcjgbEntity wxyh = jjwxjcjgbService.get(jjgxjcb.getId());
+		wxyh.setPdjg(jjgxjcb.getPdjg());
+		wxyh.setBz(jjgxjcb.getBz());
+		jjwxjcjgbService.update(wxyh);
+		return wxyh;
+	}
+
+
+
+
+
 	@RequestMapping(value = "work/getPage")
 	@ResponseBody
 	public Json getWorkPage(@RequestBody QueryPageRequest<JjgxjcbEntity> queryPageRequest) {
@@ -168,13 +290,33 @@ public class WechatController extends ApiController {
 		return Json.data(list);
 	}
 
+	@RequestMapping(value = "work/getWorkListPage")
+	@ResponseBody
+	public Json getWorkListPage(@RequestBody QueryPageRequest<JjgxxqbglEntity> queryPageRequest) {
+		JjgxxqbglEntity request = queryPageRequest.getFilter();
+		Long jjgxjcbId = request.getJjgxjcbId();
+		QueryPageResponse<JjgxxqbglEntity> queryPageResponse = jjgxxqbglService.getPage(queryPageRequest);
+		List<JjgxxqbglEntity> list = queryPageResponse.getList();
+		List<JjgxxqbglEntity> newLIst = new ArrayList<>();
+		for (JjgxxqbglEntity JjgxxqbglEntity : list) {
+			Long id = JjgxxqbglEntity.getId();
+			List<JjgxjcdjbEntity> details =
+					jjgxjcdjbService.query(new JjgxjcdjbEntity().setJjgxxqbglId(id).setJjgxjcb(new JjgxjcbEntity().setId(jjgxjcbId)));
+			if (!details.isEmpty()) {
+				JjgxxqbglEntity.setDjscz(details.get(0).getDjscz());
+			}
+			newLIst.add(JjgxxqbglEntity);
+		}
+		queryPageResponse.setList(newLIst);
+		return Json.data(queryPageResponse);
+	}
+
 	@RequestMapping(value = "work/saveJjgxjcjgb")
 	@ResponseBody
 	public Json saveJjgxjcjgb(@RequestBody JjgxjcjgbEntity jjgxjcjgb) {
 		Long id = jjgxjcjgb.getId();
 		Long jjgxjcbId = jjgxjcjgb.getJjgxjcb().getId();
 		Long jjgxbgl = jjgxjcjgb.getJjgxbglId();
-		Long jjgxxqbglId = jjgxjcjgb.getJjgxxqbglId();
 		if (id == null) {
 			jjgxjcjgbService.add(jjgxjcjgb);
 		} else {
@@ -202,6 +344,25 @@ public class WechatController extends ApiController {
 			jjgxjcbService.update(jjgxjcb);
 		}
 
+		return Json.data(STRING_SUCCESS);
+	}
+
+	@RequestMapping(value = "work/saveJjgxjcdjb")
+	@ResponseBody
+	public Json saveJjgxjcdjb(@RequestBody JjgxjcdjbEntity jjgxjcdjb) {
+		Long jjgxxqbglId = jjgxjcdjb.getJjgxxqbglId();
+		Long jjgxjcbId = jjgxjcdjb.getJjgxjcb().getId();
+		if (jjgxxqbglId != null && jjgxjcbId != null) {
+			JjgxjcdjbEntity exist = jjgxjcdjbService.getDetailsById(jjgxxqbglId, jjgxjcbId);
+			if (exist != null) {
+				//修改
+				exist.setDjscz(jjgxjcdjb.getDjscz());
+				jjgxjcdjbService.update(exist);
+			} else {
+				//新增
+				jjgxjcdjbService.add(jjgxjcdjb);
+			}
+		}
 		return Json.data(STRING_SUCCESS);
 	}
 

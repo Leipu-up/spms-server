@@ -57,6 +57,12 @@ public class JjgxjcjgbEntity extends BaseEntity<JjgxjcjgbEntity> {
 	@Export
 	private String bhepbg;
 
+	@Description("刀具实测值")
+	@Column(columnDefinition = "varchar(255) default '' comment '刀具实测值'")
+	@Search(fullLike = true)
+	@Export
+	private String djscj;
+
 	@Description("机加工序检查表")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "jjgxjcb_id")
