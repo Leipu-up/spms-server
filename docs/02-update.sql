@@ -227,3 +227,145 @@ VALUES(0, 0, 0, 0, 1765932939234, 578, 0, 1765938305801, '机加外协检查详�
 
 commit;
 
+
+
+
+DROP TABLE IF EXISTS `jjcljcb`;
+CREATE TABLE `jjcljcb` (
+                           `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                           `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                           `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                           `gysmc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '供应商名称',
+                           `jjcpbgl_id` bigint(20) unsigned NOT NULL  COMMENT '机加产品表管理id',
+                           PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='机加材料检查表';
+
+DROP TABLE IF EXISTS `jjcljcxxb`;
+CREATE TABLE `jjcljcxxb` (
+                             `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                             `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                             `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                             `xh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '序号',
+                             `jcxm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '检查项目',
+                             `gfgc` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '规范/公差',
+                             `yq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '仪器',
+                             `ypsl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '样品数量',
+                             `jjcljcb_id` bigint(20) unsigned NOT NULL   COMMENT '机加材料检查表id',
+                             PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci  COMMENT='机加材料检查详情表';
+
+
+DROP TABLE IF EXISTS `jjcljcjgb`;
+CREATE TABLE `jjcljcjgb` (
+                             `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                             `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                             `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                             `pch` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '批货号',
+                             `jyy_id` bigint(20) unsigned NOT NULL  COMMENT '检验员id',
+                             `rq` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '日期',
+                             `phsl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '批货数量',
+                             `lh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '炉号',
+                             `srr` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '受入日',
+                             `jcr` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '检查日',
+                             `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '0' COMMENT '状态(0:待完成,1:已完成)',
+                             `czzm` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '材质证明',
+                             `rohs` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT 'ROHS',
+                             `chbg` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '出货报告',
+                             `pdjg` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '判定结果',
+                             `bz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '备注',
+                             `jjcljcb_id` bigint(20) unsigned NOT NULL  COMMENT '机加外协检查表id',
+                             PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='机加材料检查结果表';
+
+DROP TABLE IF EXISTS `jjcljcjgxxb`;
+CREATE TABLE `jjcljcjgxxb` (
+                               `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+                               `create_time` bigint(20) unsigned DEFAULT '0' COMMENT '创建时间',
+                               `update_time` bigint(20) unsigned DEFAULT '0' COMMENT '修改时间',
+                               `scz` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '实测值',
+                               `jjcljcjgb_id` bigint(20) unsigned NOT NULL  COMMENT '机加材料检查结果表id',
+                               `jjcljcb_id` bigint(20) unsigned NOT NULL  COMMENT '机加材料检查id',
+                               `jjcljcxxb_id` bigint(20) unsigned NOT NULL  COMMENT '机加材料检查详情表id',
+                               PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='机加材料检查结果详情表';
+
+
+
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933144920, 591, 590, 1765938768375, '机加材料检查表_不分页查询', 'Jjcljcb_getList');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933024543, 592, 590, 1765938794390, '机加材料检查表-修改', 'Jjcljcb_update');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933117515, 593, 590, 1765938773347, '机加材料检查表-分页查询', 'Jjcljcb_getPage');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933047910, 594, 590, 1765938789534, '机加材料检查表-删除', 'Jjcljcb_delete');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933070829, 595, 590, 1765938784205, '机加材料检查表-启用', 'Jjcljcb_enable');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933168787, 596, 590, 1765938761231, '机加材料检查表-查询详情', 'Jjcljcb_getDetail');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765932979076, 597, 590, 1765938800099, '机加材料检查表-添加', 'Jjcljcb_add');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933092380, 598, 590, 1765938778787, '机加材料检查表-禁用', 'Jjcljcb_disable');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765932939234, 590, 0, 1765938305801, '机加材料检查表', 'Jjcljcb');
+
+commit;
+
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933144920, 581, 580, 1765938768375, '机加材料检查详细表_不分页查询', 'Jjcljcjgb_getList');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933024543, 582, 580, 1765938794390, '机加材料检查详细表-修改', 'Jjcljcjgb_update');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933117515, 583, 580, 1765938773347, '机加材料检查详细表-分页查询', 'Jjcljcjgb_getPage');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933047910, 584, 580, 1765938789534, '机加材料检查详细表-删除', 'Jjcljcjgb_delete');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933070829, 585, 580, 1765938784205, '机加材料检查详细表-启用', 'Jjcljcjgb_enable');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933168787, 586, 580, 1765938761231, '机加材料检查详细表-查询详情', 'JjcljcjgbgetDetail');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765932979076, 587, 580, 1765938800099, '机加材料检查详细表-添加', 'Jjcljcjgb_add');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765933092380, 588, 580, 1765938778787, '机加材料检查详细表-禁用', 'Jjcljcjgb_disable');
+
+INSERT INTO spms.permission
+(is_disabled, is_published, is_system, `type`, create_time, id, parent_id, update_time, name, `identity`)
+VALUES(0, 0, 0, 0, 1765932939234, 580, 0, 1765938305801, '机加材料检查详细表', 'Jjcljcjgb');
+
+commit;
+

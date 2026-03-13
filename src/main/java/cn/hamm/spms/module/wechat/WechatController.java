@@ -9,6 +9,14 @@ import cn.hamm.spms.module.vx.Jjgxbgl.JjgxbglEntity;
 import cn.hamm.spms.module.vx.Jjgxbgl.JjgxbglService;
 import cn.hamm.spms.module.vx.Jjgxbgl.detail.JjgxxqbglEntity;
 import cn.hamm.spms.module.vx.Jjgxbgl.detail.JjgxxqbglService;
+import cn.hamm.spms.module.vx.jjcljcb.JjcljcbEntity;
+import cn.hamm.spms.module.vx.jjcljcb.JjcljcbService;
+import cn.hamm.spms.module.vx.jjcljcb.detail.JjcljcxxbEntity;
+import cn.hamm.spms.module.vx.jjcljcb.detail.JjcljcxxbService;
+import cn.hamm.spms.module.vx.jjcljcjgb.JjcljcjgbEntity;
+import cn.hamm.spms.module.vx.jjcljcjgb.JjcljcjgbService;
+import cn.hamm.spms.module.vx.jjcljcjgb.detail.JjcljcjgxxbEntity;
+import cn.hamm.spms.module.vx.jjcljcjgb.detail.JjcljcjgxxbService;
 import cn.hamm.spms.module.vx.jjgxjcb.JjgxjcbEntity;
 import cn.hamm.spms.module.vx.jjgxjcb.JjgxjcbService;
 import cn.hamm.spms.module.vx.jjgxjcb.detail.JjgxjcdjbEntity;
@@ -78,6 +86,18 @@ public class WechatController extends ApiController {
 
 	@Autowired
 	private JjwxjcjgxxbService jjwxjcjgxxbService;
+
+	@Autowired
+	private JjcljcbService jjcljcbService;
+
+	@Autowired
+	private JjcljcxxbService jjcljcxxbService;
+
+	@Autowired
+	private JjcljcjgbService jjcljcjgbService;
+
+	@Autowired
+	private JjcljcjgxxbService jjcljcjgxxbService;
 
 
 
@@ -246,6 +266,94 @@ public class WechatController extends ApiController {
 
 
 
+	@RequestMapping(value = "cljc/getPage")
+	@ResponseBody
+	public Json geCljcPage(@RequestBody QueryPageRequest<JjcljcbEntity> queryPageRequest) {
+		QueryPageResponse<JjcljcbEntity> queryPageResponse = jjcljcbService.getPage(queryPageRequest);
+		return Json.data(queryPageResponse);
+	}
+
+	@RequestMapping(value = "cljc/saveOne")
+	@ResponseBody
+	public JjcljcjgbEntity saveCljcOne(@RequestBody JjcljcjgbEntity jjgxjcjgb) {
+		jjcljcjgbService.add(jjgxjcjgb);
+		return jjgxjcjgb;
+	}
+
+	@RequestMapping(value = "cljcjgb/getPage")
+	@ResponseBody
+	public Json getCljcjgbPage(@RequestBody QueryPageRequest<JjcljcjgbEntity> queryPageRequest) {
+		QueryPageResponse<JjcljcjgbEntity> queryPageResponse = jjcljcjgbService.getPage(queryPageRequest);
+		return Json.data(queryPageResponse);
+	}
+
+	@RequestMapping(value = "cljcjgb/saveOne")
+	@ResponseBody
+	public JjcljcjgxxbEntity saveCljcjgbWorkOne(@RequestBody JjcljcjgxxbEntity jjcljcjgxxb) {
+		jjcljcjgxxbService.add(jjcljcjgxxb);
+		return jjcljcjgxxb;
+	}
+
+	@RequestMapping(value = "cljcjgb/updateWorkOne")
+	@ResponseBody
+	public JjcljcjgbEntity updateCljcjgbWorkOne(@RequestBody JjcljcjgbEntity jjcljcjgb) {
+		JjcljcjgbEntity wxyh = jjcljcjgbService.get(jjcljcjgb.getId());
+		wxyh.setPch(jjcljcjgb.getPch());
+		wxyh.setPhsl(jjcljcjgb.getPhsl());
+		wxyh.setLh(jjcljcjgb.getLh());
+		wxyh.setSrr(jjcljcjgb.getSrr());
+		wxyh.setJcr(jjcljcjgb.getJcr());
+		jjcljcjgbService.update(wxyh);
+		return wxyh;
+	}
+	@RequestMapping(value = "cljcjgb/deleteWorkOne")
+	@ResponseBody
+	public Json deleteCljcjgbWorkOne(@RequestBody JjcljcjgbEntity jjcljcjgb) {
+		//先删除检查结果表
+		jjcljcjgxxbService.deleteAllByJjgxjcbId(jjcljcjgb.getId());
+		//再删除检查表
+		jjwxjcjgbService.delete(jjcljcjgb.getId());
+		return Json.data(STRING_SUCCESS);
+	}
+
+	@RequestMapping(value = "cljcjgb/getJjgxjcjgbList")
+	@ResponseBody
+	public Json getCljcjgbJjgxjcjgbList(@RequestBody JjcljcjgxxbEntity queryPageRequest) {
+		List<JjcljcjgxxbEntity> list = jjcljcjgxxbService.query(queryPageRequest);
+		return Json.data(list);
+	}
+
+	@RequestMapping(value = "cljcjgb/saveJjgxjcjgb")
+	@ResponseBody
+	public Json saveCljcjgbJjgxjcjgb(@RequestBody JjcljcjgxxbEntity jjcljcjgxxb) {
+		Long id = jjcljcjgxxb.getId();
+		if (id == null) {
+			jjcljcjgxxbService.add(jjcljcjgxxb);
+		} else {
+			JjcljcjgxxbEntity wxyh = jjcljcjgxxbService.get(jjcljcjgxxb.getId());
+			wxyh.setScz(jjcljcjgxxb.getScz());
+			jjcljcjgxxbService.update(wxyh);
+		}
+
+		return Json.data(STRING_SUCCESS);
+	}
+
+	@RequestMapping(value = "cljcjgb/getWorkListPage")
+	@ResponseBody
+	public Json getCljcjgbWorkListPage(@RequestBody QueryPageRequest<JjcljcxxbEntity> queryPageRequest) {
+		QueryPageResponse<JjcljcxxbEntity> queryPageResponse = jjcljcxxbService.getPage(queryPageRequest);
+		return Json.data(queryPageResponse);
+	}
+
+	@RequestMapping(value = "cljcjgb/updateJjwxjcjgb")
+	@ResponseBody
+	public JjcljcjgbEntity updateJjcljcjgb(@RequestBody JjcljcjgbEntity jjgxjcb) {
+		JjcljcjgbEntity wxyh = jjcljcjgbService.get(jjgxjcb.getId());
+		wxyh.setPdjg(jjgxjcb.getPdjg());
+		wxyh.setBz(jjgxjcb.getBz());
+		jjcljcjgbService.update(wxyh);
+		return wxyh;
+	}
 
 
 	@RequestMapping(value = "work/getPage")
